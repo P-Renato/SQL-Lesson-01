@@ -37,10 +37,8 @@ app.post('/login', async (req,res,next) => {
             WHERE email = ${email} AND
             password = ${password}
         `;
-        if(user.length == 0) {
-            console.log("error");
+        if(!user[0]) 
             throw new Error('Invalid credentials');
-        }
         res.json(user);
     } catch (error) {
         res.status(401).json({msg: error.message})
